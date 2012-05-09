@@ -23,6 +23,8 @@ while true
 	print '[$]> '
 	command = gets
 	case command[0]
+	when 'l'
+		print_index messages, pageStart
 	when 'n'
 		pageStart += 10
 		print_index messages, pageStart
