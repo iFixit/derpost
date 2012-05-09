@@ -13,7 +13,7 @@ while true
 	end
 	
 	print '[$]> '
-	case gets.strip
+	case gets[0]
 	when 'n'
 		pageStart += 10
 	when 'q'
