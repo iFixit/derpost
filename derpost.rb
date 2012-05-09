@@ -10,6 +10,11 @@ def print_index(messages, pageStart)
 	end
 end
 
+def print_message(messages, pageStart, messageIndex)
+	messageId = messages[pageStart+messageIndex-1].split[0]
+	puts `postcat -q #{messageId}`
+end
+
 messages = `postqueue -p | sed 1d | ../lineify/lineify.rb`.split "\n"
 pageStart = 0
 
@@ -21,6 +26,8 @@ while true
 	when 'n'
 		pageStart += 10
 		print_index messages, pageStart
+	when 'r'
+		print_message messages, pageStart, command.split[1].to_i
 	when 'q'
 		break
 	end
