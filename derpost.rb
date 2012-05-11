@@ -22,7 +22,8 @@ print_index messages, pageStart
 while true
 	print '[$]> '
 	command = gets
-	case command[0]
+	# .chr is necessary in Ruby 1.8, which otherwise converts to a Fixnum.
+	case command[0].chr
 	when 'l'
 		print_index messages, pageStart
 	when 'n'
