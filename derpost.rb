@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+MESSAGES_PER_PAGE = 10
+
 def print_index(messages, pageStart)
 	if pageStart < messages.size
-		messages[pageStart, 10].each_with_index do |message, index|
+		messages[pageStart, MESSAGES_PER_PAGE].each_with_index do |message, index|
 			puts "#{index+1}: #{message}"
 		end
 	else
@@ -37,10 +39,10 @@ while true
 	when 'l'
 		print_index messages, pageStart
 	when 'n'
-		pageStart += 10
+		pageStart += MESSAGES_PER_PAGE
 		print_index messages, pageStart
 	when 'p'
-		pageStart -= 10
+		pageStart -= MESSAGES_PER_PAGE
 		print_index messages, pageStart
 	when 'r'
 		print_message messages, pageStart, command.split[1].to_i
