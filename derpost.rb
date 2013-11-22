@@ -30,7 +30,7 @@ pageStart = 0
 print_index messages, pageStart
 while true
 	print '[$]> '
-	command = gets
+	command = gets || (puts ; break) # Exit on end of input (ctrl-d).
 	# .chr is necessary in Ruby 1.8, which otherwise converts to a Fixnum.
 	case command[0].chr
 	when 'l'
