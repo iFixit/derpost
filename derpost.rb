@@ -2,7 +2,8 @@
 
 MESSAGES_PER_PAGE = 10
 
-def print_index(messages, pageStart)
+def print_index(messages, page)
+	pageStart = (page + 1) * MESSAGES_PER_PAGE
 	if pageStart < messages.size
 		messages[pageStart, MESSAGES_PER_PAGE].each_with_index do |message, index|
 			puts "#{index+1}: #{message}"
@@ -12,7 +13,8 @@ def print_index(messages, pageStart)
 	end
 end
 
-def print_message(messages, pageStart, messageIndex)
+def print_message(messages, page, messageIndex)
+	pageStart = (page + 1) * MESSAGES_PER_PAGE
 	messageId = messages[pageStart+messageIndex-1].split[0]
 	puts `postcat -q #{messageId}`
 end
@@ -28,24 +30,24 @@ def print_help
 end
 
 messages = `postqueue -p | sed 1d | lineify`.split "\n"
-pageStart = 0
+page = 1
 
-print_index messages, pageStart
+print_index messages, page
 while true
 	print '[$]> '
 	command = gets || (puts ; break) # Exit on end of input (ctrl-d).
 	# .chr is necessary in Ruby 1.8, which otherwise converts to a Fixnum.
 	case command[0].chr
 	when 'l'
-		print_index messages, pageStart
+		print_index messages, page
 	when 'n'
-		pageStart += MESSAGES_PER_PAGE
-		print_index messages, pageStart
+		page += 1
+		print_index messages, page
 	when 'p'
-		pageStart -= MESSAGES_PER_PAGE
-		print_index messages, pageStart
+		page -= 1
+		print_index messages, page
 	when 'r'
-		print_message messages, pageStart, command.split[1].to_i
+		print_message messages, page, command.split[1].to_i
 	when 'h'
 		print_help
 	when '?'
