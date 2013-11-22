@@ -15,7 +15,7 @@ def print_message(messages, pageStart, messageIndex)
 	puts `postcat -q #{messageId}`
 end
 
-messages = `postqueue -p | sed 1d | ../lineify/lineify.rb`.split "\n"
+messages = `postqueue -p | sed 1d | lineify`.split "\n"
 pageStart = 0
 
 print_index messages, pageStart
