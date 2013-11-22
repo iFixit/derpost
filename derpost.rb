@@ -15,6 +15,15 @@ def print_message(messages, pageStart, messageIndex)
 	puts `postcat -q #{messageId}`
 end
 
+def print_help
+	puts 'Available commands:'
+	puts '    l      List messages in the current page.'
+	puts '    n      View the next page of messages.'
+	puts '    r <N>  Read message N.'
+	puts '    h, ?   Display help (this page).'
+	puts '    q      Quit.'
+end
+
 messages = `postqueue -p | sed 1d | lineify`.split "\n"
 pageStart = 0
 
@@ -31,6 +40,10 @@ while true
 		print_index messages, pageStart
 	when 'r'
 		print_message messages, pageStart, command.split[1].to_i
+	when 'h'
+		print_help
+	when '?'
+		print_help
 	when 'q'
 		break
 	end
