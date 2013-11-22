@@ -46,6 +46,8 @@ while true
 		print_help
 	when 'q'
 		break
+	else
+		puts "Unknown command #{command[0].chr}.  Enter 'h' for help."
 	end
 end
 
