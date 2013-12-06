@@ -5,13 +5,15 @@ MESSAGES_PER_PAGE = 10
 def print_index(messages, page)
 	pageStart = (page - 1) * MESSAGES_PER_PAGE
 	totalPages = (messages.size - 1 + MESSAGES_PER_PAGE) / MESSAGES_PER_PAGE
-	if page <= totalPages
+	if page < 1
+		puts 'Start of messages.'
+	elsif page > totalPages
+		puts 'End of messages.'
+	else
 		messages[pageStart, MESSAGES_PER_PAGE].each_with_index do |message, index|
 			puts "#{index+1}: #{message}"
 		end
 		puts "Page #{page}/#{totalPages}"
-	else
-		puts 'End of messages.'
 	end
 end
 
