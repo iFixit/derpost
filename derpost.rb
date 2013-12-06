@@ -18,7 +18,7 @@ def print_index(messages, page)
 end
 
 def print_message(messages, page, messageIndex)
-	pageStart = (page + 1) * MESSAGES_PER_PAGE
+	pageStart = (page - 1) * MESSAGES_PER_PAGE
 	messageId = messages[pageStart+messageIndex-1].split[0]
 	puts `postcat -q #{messageId}`
 end
