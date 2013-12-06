@@ -45,6 +45,7 @@ command:
         l      List messages in the current page.
         n      View the next page of messages.
         p      View the previous page of messages.
+        g <N>  Go to page N.
         r <N>  Read message N.
         h, ?   Display help (this page).
         q      Quit.

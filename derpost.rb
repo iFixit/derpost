@@ -28,6 +28,7 @@ def print_help
 	puts '    l      List messages in the current page.'
 	puts '    n      View the next page of messages.'
 	puts '    p      View the previous page of messages.'
+	puts '    g <N>  Go to page N.'
 	puts '    r <N>  Read message N.'
 	puts '    h, ?   Display help (this page).'
 	puts '    q      Quit.'
@@ -49,6 +50,9 @@ while true
 		print_index messages, page
 	when 'p'
 		page -= 1
+		print_index messages, page
+	when 'g'
+		page = command.split[1].to_i
 		print_index messages, page
 	when 'r'
 		print_message messages, page, command.split[1].to_i
