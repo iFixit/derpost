@@ -3,7 +3,7 @@
 MESSAGES_PER_PAGE = 10
 
 def print_index(messages, page)
-	pageStart = (page + 1) * MESSAGES_PER_PAGE
+	pageStart = (page - 1) * MESSAGES_PER_PAGE
 	if pageStart < messages.size
 		messages[pageStart, MESSAGES_PER_PAGE].each_with_index do |message, index|
 			puts "#{index+1}: #{message}"
