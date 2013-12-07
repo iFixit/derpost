@@ -49,6 +49,7 @@ command:
         p      View the previous page of messages.
         g <N>  Go to page N.
         r <N>  Read message N.
+        d <N>  Delete message N.
         h, ?   Display help (this page).
         q      Quit.
 

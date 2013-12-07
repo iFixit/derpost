@@ -17,10 +17,17 @@ def print_index(messages, page)
 	end
 end
 
-def print_message(messages, page, messageIndex)
-	pageStart = (page - 1) * MESSAGES_PER_PAGE
-	messageId = messages[pageStart+messageIndex-1].split[0]
+def print_message(messageId)
 	puts `postcat -q #{messageId}`
+end
+
+def delete_message(messageId)
+	puts `postsuper -d #{messageId}`
+end
+
+def number_to_id(messages, page, messageIndex)
+	pageStart = (page - 1) * MESSAGES_PER_PAGE
+	return messages[pageStart+messageIndex-1].split[0]
 end
 
 def print_help
@@ -30,6 +37,7 @@ def print_help
 	puts '    p      View the previous page of messages.'
 	puts '    g <N>  Go to page N.'
 	puts '    r <N>  Read message N.'
+	puts '    d <N>  Delete message N.'
 	puts '    h, ?   Display help (this page).'
 	puts '    q      Quit.'
 end
@@ -55,7 +63,9 @@ while true
 		page = command.split[1].to_i
 		print_index messages, page
 	when 'r'
-		print_message messages, page, command.split[1].to_i
+		print_message number_to_id(messages, page, command.split[1].to_i)
+	when 'd'
+		delete_message number_to_id(messages, page, command.split[1].to_i)
 	when 'h'
 		print_help
 	when '?'
