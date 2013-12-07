@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 MESSAGES_PER_PAGE = 10
+PAGER = ENV['PAGER'] || 'less'
 
 def print_index(messages, page)
 	pageStart = (page - 1) * MESSAGES_PER_PAGE
@@ -18,7 +19,7 @@ def print_index(messages, page)
 end
 
 def print_message(messageId)
-	puts `postcat -q #{messageId}`
+	system "postcat -q #{messageId} | #{PAGER}"
 end
 
 def delete_message(messageId)

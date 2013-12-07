@@ -53,6 +53,11 @@ command:
         h, ?   Display help (this page).
         q      Quit.
 
+When viewing messages, derpost will attempt to use your preferred pager, as
+specified in the environment variable `PAGER`.  If not set, the pager will
+default to `less`.  If you just want to display content directly, try setting
+`PAGER=cat`.
+
 # License
 
 derpost is available under [the zlib license] ([summary]).
